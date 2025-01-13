@@ -1,19 +1,16 @@
 class House:
-
     houses_history = []
 
     def __new__(cls, *args, **kwargs):
-        args = args[0]
-        return cls.houses_history.append(args)
+        cls.houses_history.append(args[0])
+        return super().__new__(cls)
 
-    def __init__(self, name, number_of_floors):
+    def __init__(self, name: str, number_of_floors: int):
         self.name = name
         self.number_of_floors = number_of_floors
 
     def __del__(self):
-        print(f"{self.name} снесён, но он останется в истории")
-
-
+        print(f'{self.name} снесён, но он останется в истории')
 
 
 h1 = House('ЖК Эльбрус', 10)
@@ -26,4 +23,5 @@ print(House.houses_history)
 # Удаление объектов
 del h2
 del h3
+
 print(House.houses_history)
